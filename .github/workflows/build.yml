@@ -56,7 +56,7 @@ jobs:
       TEMPLATE_TARGET: ${{ matrix.target }}
     steps:
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -91,7 +91,7 @@ jobs:
       TEMPLATE_TARGET: ${{ matrix.target }}
     steps:
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -114,7 +114,7 @@ jobs:
       - Xcode-template-matrix-old
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4.1.7
       - name: Collect templates together
         run: |
           mkdir -p output
@@ -142,7 +142,7 @@ jobs:
           sed -i .bak -E "s#^TEMP_DIR.*#TEMP_DIR = '$TMP_DIR'#g" ~/.emscripten
           xattr -r -d com.apple.quarantine ~/sdk-emscripten-mac || true
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -169,7 +169,7 @@ jobs:
       image: coronalabs/linux_builder_rpi
     steps:
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -200,7 +200,7 @@ jobs:
     runs-on: macos-10.15
     steps:
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -222,7 +222,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Get Native
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Native
       - name: Put native in place
@@ -245,7 +245,7 @@ jobs:
     runs-on: macos-10.15
     steps:
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -274,26 +274,26 @@ jobs:
     runs-on: macos-10.15
     steps:
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
         run: tar -xzf SourceCode/corona.tgz
       - run: ./tools/GHAction/daily_env.sh
       - name: Get collected templates
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Collected-ios-templates
       - name: Put collected iOS templates in place
         run: cp -v Collected-ios-templates/* platform/resources/iostemplate/
       - name: Get Webtemplate
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Webtemplate
       - name: Put webtemplate in place
         run: cp -v Webtemplate/webtemplate.zip platform/resources/
       - name: Get Linux templates
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Linux-Templates
       - name: Put webtemplate in place
@@ -309,7 +309,7 @@ jobs:
       - name: Clean-up docs
         run: rm -rf docs/SampleCode/.git docs/SampleCode/.gitignore
       - name: Get Native
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Native
       - name: Put JRE in place
@@ -336,7 +336,7 @@ jobs:
     runs-on: macos-10.15
     steps:
       - name: Get built simulator
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Simulator-macOS
       - name: Notarize
@@ -369,7 +369,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Get processed code
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: SourceCode
       - name: Unpack source code
@@ -390,14 +390,14 @@ jobs:
       - name: Move docs outside the directory
         run: mv docs ../docs
       - name: Get Webtemplate
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Webtemplate
       - name: Put webtemplate in place
         run: cp -v Webtemplate/webtemplate.zip platform/resources/
         shell: bash
       - name: Get Linux templates
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Linux-Templates
       - name: Put webtemplate in place
@@ -406,7 +406,7 @@ jobs:
           cp -v Linux-Templates/raspbiantemplate.tar.gz platform/resources/
         shell: bash
       - name: Get Corona Native
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Native
       - name: Put native in place
@@ -481,22 +481,22 @@ jobs:
           echo "$GIT_LOG" >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
           echo "$GIT_LOG"
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: Simulator-macOS
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: Simulator-Windows
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: Simulator-Linux
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: CoronaCards-iOS
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: CoronaCards-Android
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: Native
       - name: Create Release
